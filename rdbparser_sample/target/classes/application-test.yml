@@ -1,0 +1,31 @@
+spring:
+  ## use spring boot to load configuration of redis cluster (letture)
+  ## idmap redis
+  redis:
+    #password:
+    #database:
+    ## 连接超时时间（毫秒）
+    timeout: 6000
+    cluster:
+      ## 因为可以重定向，所以不必填写所有节点，这里取每台机器的其中一个端口
+      nodes: 10.134.41.113:8001,10.134.41.113:8002,10.134.41.113:8003
+#      nodes:
+#        - 10.134.35.45:6001
+#        - 10.134.35.45:6002
+      ## 获取失败 最大重定向次数
+      max-redirects: 3
+    lettuce: 
+      pool: 
+        ## 可用连接实例的最大数目（使用负值表示没有限制）
+        max-active: 100
+        ## pool最多有多少个状态为idle(空闲)的实例
+        max-idle: 10
+        min-idle: 0
+        ## 当连接池资源耗尽时,调用者最大阻塞的时间,超时将跑出异常
+        ## 使用负值表示没有限制
+        max-wait: 2000
+    ## 设置redis中记录的默认可重刷新间隔，单位：秒
+    ## 若一天记录已经存在超过30天，则可重新请求gdt
+    expire:
+      ## idmap redis，默认30天
+      idmap: 2592000

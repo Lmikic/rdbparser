@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package datacenter;
+
+// 以下对java的支持
+option java_package = "com.sogo.bigdata.rdbparser.proto";
+option java_outer_classname = "IdMappingProto";
+
+// 目前支持的userid类型，详见wiki
+enum IdType
+{
+    ID_UNKNOWN = 0;
+    AAID = 1;
+    BBID = 2;
+    CCID = 3;
+}
+
+message IdBrief
+{
+    IdType type = 1;   // the type of id
+    string value = 2;   // the value of id
+}
